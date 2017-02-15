@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MySQL - ydd@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="2.6">
+    <schema id="1" name="ydd">
+      <visible>1</visible>
+    </schema>
+    <schema id="2" name="bookcity"/>
+    <schema id="3" name="confluent"/>
+    <schema id="4" name="confluentlive"/>
+    <schema id="5" name="confluentnew"/>
+    <schema id="6" name="imp"/>
+    <schema id="7" name="information_schema"/>
+    <schema id="8" name="mysql"/>
+    <schema id="9" name="performance_schema"/>
+    <schema id="10" name="sj"/>
+    <schema id="11" name="ssh"/>
+    <schema id="12" name="template4j"/>
+    <schema id="13" name="test"/>
+    <table id="14" parent="1" name="t_attention"/>
+    <table id="15" parent="1" name="t_discover"/>
+    <table id="16" parent="1" name="t_image"/>
+    <table id="17" parent="1" name="t_message"/>
+    <table id="18" parent="1" name="t_suggest"/>
+    <table id="19" parent="1" name="t_system"/>
+    <table id="20" parent="1" name="t_user"/>
+    <table id="21" parent="1" name="t_words"/>
+    <column id="22" parent="14" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="23" parent="14" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="24" parent="14" name="data_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="25" parent="14" name="type">
+      <mandatory>1</mandatory>
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <key id="26" parent="14" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="27" parent="15" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="28" parent="15" name="is_delete">
+      <mandatory>1</mandatory>
+      <data-type>tinyint(4)|0</data-type>
+    </column>
+    <column id="29" parent="15" name="title">
+      <mandatory>1</mandatory>
+      <data-type>varchar(40)|0</data-type>
+    </column>
+    <column id="30" parent="15" name="create_time">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="31" parent="15" name="detail">
+      <mandatory>1</mandatory>
+      <data-type>varchar(300)|0</data-type>
+    </column>
+    <column id="32" parent="15" name="share_count">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="33" parent="15" name="comments_count">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="34" parent="15" name="attention_count">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+    </column>
+    <column id="35" parent="15" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <key id="36" parent="15" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="37" parent="16" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="38" parent="16" name="image_url">
+      <mandatory>1</mandatory>
+      <data-type>varchar(100)|0</data-type>
+    </column>
+    <column id="39" parent="16" name="data_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="40" parent="16" name="type">
+      <mandatory>1</mandatory>
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <key id="41" parent="16" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="42" parent="17" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="43" parent="17" name="is_delete">
+      <mandatory>1</mandatory>
+      <data-type>tinyint(4)|0</data-type>
+      <default-expression>&apos;0&apos;</default-expression>
+    </column>
+    <column id="44" parent="17" name="type">
+      <mandatory>1</mandatory>
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="45" parent="17" name="create_time">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="46" parent="17" name="title">
+      <mandatory>1</mandatory>
+      <data-type>varchar(40)|0</data-type>
+    </column>
+    <column id="47" parent="17" name="latitude">
+      <mandatory>1</mandatory>
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="48" parent="17" name="longitude">
+      <mandatory>1</mandatory>
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <column id="49" parent="17" name="kind">
+      <mandatory>1</mandatory>
+      <data-type>varchar(10)|0</data-type>
+    </column>
+    <column id="50" parent="17" name="detail">
+      <mandatory>1</mandatory>
+      <data-type>varchar(300)|0</data-type>
+    </column>
+    <column id="51" parent="17" name="thing_time">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="52" parent="17" name="phone_number">
+      <mandatory>1</mandatory>
+      <data-type>varchar(11)|0</data-type>
+    </column>
+    <column id="53" parent="17" name="share_count">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <default-expression>&apos;0&apos;</default-expression>
+    </column>
+    <column id="54" parent="17" name="comments_count">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <default-expression>&apos;0&apos;</default-expression>
+    </column>
+    <column id="55" parent="17" name="attention_count">
+      <mandatory>1</mandatory>
+      <data-type>int(11)|0</data-type>
+      <default-expression>&apos;0&apos;</default-expression>
+    </column>
+    <column id="56" parent="17" name="user_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <key id="57" parent="17" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="58" parent="18" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="59" parent="18" name="create_time">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="60" parent="18" name="content">
+      <mandatory>1</mandatory>
+      <data-type>varchar(300)|0</data-type>
+    </column>
+    <column id="61" parent="18" name="contact">
+      <mandatory>1</mandatory>
+      <data-type>varchar(45)|0</data-type>
+    </column>
+    <key id="62" parent="18" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="63" parent="19" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="64" parent="19" name="create_time">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="65" parent="19" name="content">
+      <mandatory>1</mandatory>
+      <data-type>varchar(300)|0</data-type>
+    </column>
+    <key id="66" parent="19" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="67" parent="20" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+      <sequence-identity>1</sequence-identity>
+    </column>
+    <column id="68" parent="20" name="name">
+      <mandatory>1</mandatory>
+      <data-type>varchar(20)|0</data-type>
+    </column>
+    <column id="69" parent="20" name="portrait">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="70" parent="20" name="phone_number">
+      <mandatory>1</mandatory>
+      <data-type>varchar(11)|0</data-type>
+    </column>
+    <column id="71" parent="20" name="location">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="72" parent="20" name="create_time">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="73" parent="20" name="password">
+      <mandatory>1</mandatory>
+      <data-type>varchar(255)|0</data-type>
+    </column>
+    <column id="74" parent="20" name="token">
+      <mandatory>1</mandatory>
+      <data-type>varchar(36)|0</data-type>
+      <default-expression>&apos;00000000000000000000000000000000&apos;</default-expression>
+    </column>
+    <key id="75" parent="20" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+    <column id="76" parent="21" name="id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="77" parent="21" name="is_delete">
+      <mandatory>1</mandatory>
+      <data-type>tinyint(4)|0</data-type>
+    </column>
+    <column id="78" parent="21" name="type">
+      <mandatory>1</mandatory>
+      <data-type>varchar(10)|0</data-type>
+    </column>
+    <column id="79" parent="21" name="kind">
+      <mandatory>1</mandatory>
+      <data-type>varchar(10)|0</data-type>
+    </column>
+    <column id="80" parent="21" name="from_user_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="81" parent="21" name="to_user_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <column id="82" parent="21" name="create_time">
+      <mandatory>1</mandatory>
+      <data-type>datetime|0</data-type>
+    </column>
+    <column id="83" parent="21" name="detail">
+      <mandatory>1</mandatory>
+      <data-type>varchar(300)|0</data-type>
+    </column>
+    <column id="84" parent="21" name="data_id">
+      <mandatory>1</mandatory>
+      <data-type>bigint(20)|0</data-type>
+    </column>
+    <key id="85" parent="21" name="PRIMARY">
+      <columns>id</columns>
+      <primary>1</primary>
+    </key>
+  </database-model>
+</dataSource>

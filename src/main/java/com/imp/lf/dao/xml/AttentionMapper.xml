@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imp.lf.dao.DiscoverMapper">
+
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+		id,data_id as dataId,user_id as userId,type
+	</sql>
+
+   <select id="findAttention" resultType="com.imp.lf.entities.Attention">
+       SELECT a.*
+       from t_attention a
+       WHERE
+       a.data_id=#{dataId} and
+       a.user_id=#{userId} and
+       a.type=#{type}
+   </select>
+
+</mapper>

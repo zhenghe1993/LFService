@@ -1,0 +1,22 @@
+
+data
+
+根据类别分为  lost  found  discover 三类
+
+
+LFMessage    失物，招领  信息
+
+ 添加 (ok)
+ 信息分类  失物，招领
+ 分页 获取所有
+ 获取个人 分页
+ 删除
+ 按createTime 排序
+
+
+ discover 数据
+ 添加
+ 分页 获取所有
+ 获取个人 分页
+ 删除
+ 按createTime 排序

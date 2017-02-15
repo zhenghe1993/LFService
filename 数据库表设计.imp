@@ -1,0 +1,31 @@
+Database design:
+
+使用者 User table : id name phoneNumber portrait location createTime password token;
+
+失物招领 LFMessage table: id isDelete type createTime title latitude longitude kind detail thingTime phone
+
+shareCount commentsCount attentionCount userId ;
+
+
+发现  discover  id, title, createTime,detail, shareCount, commentsCount, attentionCount
+
+
+留言或者评论 words table: id dataId  isDelete  type  kind  fromUserId  toUserId   createTime  detail;
+
+关注 Attention table:id userId
+
+图片地址 Image table: id  imageUrl  dataId
+
+
+系统消息   system  id createTime  content
+
+意见反馈   suggest id createTime content
+
+
+
+data  user    多对一
+data  words   一对多
+data  image   一对多
+user data  一对多
+user words  多对多
+user attention  中间表

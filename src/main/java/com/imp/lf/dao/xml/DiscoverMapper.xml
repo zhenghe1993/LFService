@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imp.lf.dao.DiscoverMapper">
+
+    <!--&lt;!&ndash; 通用查询结果列&ndash;&gt;-->
+    <!--<sql id="Base_Column_List">-->
+		<!--id,is_delete AS isDelete ,create_time AS createTime,title,detail,share_count AS shareCount,-->
+		<!--comments_count AS commentsCount,attention_count AS attentionCount,user_id AS user.id-->
+	<!--</sql>-->
+
+    <resultMap id="discoverList" type="com.imp.lf.entities.Discover">
+        <id column="id" property="id"/>
+        <result column="is_delete" property="isDelete"/>
+        <result column="create_time" property="createTime"/>
+        <result column="title" property="title"/>
+        <result column="detail" property="detail"/>
+        <result column="share_count" property="shareCount"/>
+        <result column="comments_count" property="commentsCount"/>
+        <result column="attention_count" property="attentionCount"/>
+
+        <association property="user" javaType="com.imp.lf.entities.User">
+            <id column="u_id" property="id"/>
+            <result column="name" property="name"/>
+            <result column="portrait" property="portrait"/>
+            <result column="u_phone_number" property="phoneNumber"/>
+            <result column="location" property="location"/>
+            <result column="u_create_time" property="createTime"/>
+            <result column="password" property="password"/>
+            <result column="token" property="token"/>
+        </association>
+
+        <collection property="imageUrls" ofType="java.lang.String">
+            <!--<id column="i_id" property="id"/>-->
+            <result column="image_url" property="imageUrl"/>
+        </collection>
+
+        <collection property="wordsList" ofType="com.imp.lf.entities.Words">
+            <id column="w_id" property="id"/>
+            <result column="w_is_delete" property="isDelete"/>
+            <result column="w_type" property="type"/>
+            <result column="from_user_id" property="fromUserId"/>
+            <result column="to_user_id" property="toUserId"/>
+            <result column="w_create_time" property="createTime"/>
+            <result column="w_detail" property="detail"/>
+            <result column="data_id" property="dataId"/>
+        </collection>
+    </resultMap>
+
+
+    <insert id="insertDiscover" parameterType="com.imp.lf.entities.Discover" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO t_discover (
+        is_delete,
+        create_time,
+        title,
+        detail,
+        share_count,
+        comments_count,
+        attention_count,
+        user_id
+        ) VALUES (
+        #{isDelete},
+        #{createTime},
+        #{title},
+        #{detail},
+        #{shareCount},
+        #{commentsCount},
+        #{attentionCount},
+        #{user.id}
+        )
+	</insert>
+
+    <select id="findDiscoverList" resultMap="discoverList">
+        SELECT
+        d.*,
+        u.id as u_id,
+        u.name,
+        u.portrait,
+        u.phone_number as u_phone_number,
+        u.location,
+        u.create_time as u_create_time,
+        u.password,
+        u.token,
+        i.image_url,
+        w.id as w_id,
+        w.is_delete as w_is_delete,
+        w.type as w_type,
+        w.from_user_id,
+        w.to_user_id,
+        w.create_time as w_create_time,
+        w.detail as w_detail,
+        w.data_id
+        FROM t_discover d
+        INNER JOIN t_user u ON (
+        d.user_id=u.id
+        <if test="id!=null">
+            and u.id=#{id}
+        </if>
+        )
+        LEFT JOIN t_image i ON (i.type="DIS" and i.data_id=d.id)
+        LEFT JOIN t_words w ON (w.type="DIS" and w.data_id=d.id and w.is_delete=0)
+        WHERE
+        d.is_delete=0
+        order by d.create_time DESC
+        limit #{currentPage},#{size}
+    </select>
+
+
+    <update id="deleteDiscoverById" parameterType="java.lang.Long">
+        UPDATE t_discover d SET d.is_delete=1 WHERE d.id=#{id}
+    </update>
+
+    <update id="addDiscoverShareCount" parameterType="java.lang.Long">
+        update t_discover d set  d.share_count=d.share_count+1  where d.id=#{id};
+    </update>
+
+
+    <update id="addDiscoverCommentsCount" parameterType="java.lang.Long">
+        update t_discover d set  d.comments_count=d.comments_count+1  where d.id=#{id};
+    </update>
+
+    <update id="minusDiscoverCommentsCount" parameterType="java.lang.Long">
+        update t_discover d set  d.comments_count=d.comments_count-1  where d.id=#{id};
+    </update>
+
+
+    <update id="addDiscoverAttentionCount" parameterType="java.lang.Long">
+    update t_discover d set  d.attention_count=d.attention_count+1  where d.id=#{id};
+</update>
+
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.imp.lf.dao.WordsMapper">
+
+	<!-- 通用查询结果列-->
+	<sql id="Base_Column_List">
+		id, is_delete as isDelete,type,kind,from_user_id as fromUserId,to_user_id as toUserId, create_time as createTime,
+		 detail,data_id as dataId
+	</sql>
+
+     <update id="deleteWordsById" parameterType="java.lang.Long">
+		 update t_words w set w.is_delete =1  where w.id=#{id};
+	 </update>
+
+    <select id="findWordsById" parameterType="java.lang.Long" >
+		SELECT w.* from t_words w WHERE w.from_user_id=#{id} OR w.to_user_id=#{id}
+	</select>
+
+
+</mapper>

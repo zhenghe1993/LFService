@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="MobTools-2016.1201.1839">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/MobTools-2016.1201.1839.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/MobCommons-2016.1201.1839.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
