@@ -59,7 +59,7 @@ public class WordsController {
         return userService.updateTokenById(words.getFromUserId());
     }
 
-    //查找留言
+    //查找
 
     @ResponseBody
     @RequestMapping(value = "/words/findWords", method = RequestMethod.POST)

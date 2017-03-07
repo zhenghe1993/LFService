@@ -3,6 +3,7 @@ package com.imp.lf.controller;
 import com.alibaba.fastjson.JSON;
 import com.imp.lf.entities.Image;
 import com.imp.lf.entities.LFMessage;
+import com.imp.lf.entities.ReceiveTemplate;
 import com.imp.lf.entities.User;
 import com.imp.lf.service.ImageService;
 import com.imp.lf.service.LFMessageService;
@@ -64,16 +65,24 @@ public class LFMessageController {
 
 
         for (MultipartFile image : images) {
-            String root = request.getSession().getServletContext().getRealPath("/") ;
-            String filePath="image/" + image.getOriginalFilename();
-            image.transferTo(new File(root+filePath));
+            String root = request.getSession().getServletContext().getRealPath("/");
+            String filePath = "image/" + image.getOriginalFilename();
+            image.transferTo(new File(root + filePath));
             Image imageTemp = new Image();
             imageTemp.setDataId(dataId);
             imageTemp.setImageUrl(filePath);
             imageTemp.setType("LF");
             imageService.insertImage(imageTemp);
         }
-        return userService.updateTokenById(userId);
+        ReceiveTemplate<LFMessage> template = new ReceiveTemplate<>();
+        List<LFMessage> lfMessages = lfMessageService.findLFMessageList(dataId, "", null, null, 1);
+        if (lfMessages != null) {
+            template.setData(lfMessages.get(0));
+        }
+        token = userService.updateTokenById(userId);
+        template.setToken(token);
+
+        return JSON.toJSONString(template);
     }
 
 

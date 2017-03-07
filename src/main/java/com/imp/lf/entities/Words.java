@@ -20,9 +20,9 @@ public class Words implements Serializable{
     @TableField(value = "is_delete")
     private int isDelete;
 
-    private String type;//LF 失物招领   DIS发现
+    private String type;//LF 失物招领   DIS发现  LEA留言
 
-    private String kind;//TOW 评论 words数据 TOM 评论 message数据
+    private String kind;//TOW 评论   TOM 评论 message数据
 
     @TableField(value = "from_user_id")
     private Long fromUserId;

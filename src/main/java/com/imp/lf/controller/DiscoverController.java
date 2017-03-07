@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
@@ -36,6 +37,10 @@ public class DiscoverController {
     @Autowired
     private ImageService imageService;
 
+    @PostConstruct
+    public void init(){
+        System.out.println("init==============");
+    }
     //插入
     @ResponseBody
     @RequestMapping(value = "/discover/addDiscover", method = RequestMethod.POST)

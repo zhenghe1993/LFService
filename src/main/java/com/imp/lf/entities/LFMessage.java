@@ -22,7 +22,7 @@ public class LFMessage implements Serializable {
     private Long id;
     @TableField(value = "is_delete")
     private int isDelete;
-    private String type;
+    private String type;   //LOST  FOUND
     @TableField(value = "create_time")
     private Date createTime;
     private String title;
