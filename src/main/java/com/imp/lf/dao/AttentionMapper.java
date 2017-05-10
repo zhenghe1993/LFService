@@ -10,6 +10,6 @@ import com.imp.lf.entities.Attention;
  */
 public interface AttentionMapper extends AutoMapper<Attention>{
 
-   public Attention findAttention(Long dataId,Long userId,String type);
+    Attention findAttention(Long dataId,Long userId,String type);
 
 }

@@ -144,6 +144,4 @@ public class DiscoverController {
         discoverService.addDiscoverShareCount(dataId);
         return "true";
     }
-
-
 }

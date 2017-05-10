@@ -13,7 +13,7 @@ import java.util.List;
 public interface LFMessageMapper extends AutoMapper<LFMessage> {
 
 
-    Long insertMessage(LFMessage lfMessage);
+    void insertMessage(LFMessage lfMessage);
 
     List<LFMessage> findLFMessageList(@Param("id") Long id, @Param("type") String type, @Param("kind") String kind, @Param("location") String location, @Param("currentPage") int currentPage, @Param("size") int size);
 

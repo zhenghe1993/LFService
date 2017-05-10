@@ -1,5 +1,6 @@
 package com.imp.lf.controller;
 
+import com.imp.lf.dto.ResultTemplate;
 import com.imp.lf.entities.SuggestMessage;
 import com.imp.lf.service.SuggestMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import java.util.Date;
  * Created by (IMP)郑和明
  * Date is 2017/1/24
  */
+@RequestMapping(produces = "application/json")
 @Controller
 public class SuggestMessageController {
 
@@ -22,16 +24,21 @@ public class SuggestMessageController {
 
     @ResponseBody
     @RequestMapping(value = "/addSuggestMessage", method = RequestMethod.POST)
-    public String addSuggestMessage(String content, String contact) {
+    public Object addSuggestMessage(String content, String contact) {
 
         if (contact == null || content == null) {
-            return "Incomplete";
+            return new ResultTemplate("参数缺失",ResultTemplate.PARAMETER_LOST);
         }
         SuggestMessage suggestMessage = new SuggestMessage();
         suggestMessage.setCreateTime(new Date());
         suggestMessage.setContent(content);
         suggestMessage.setContact(contact);
-        boolean flag = suggestMessageService.insert(suggestMessage);
-        return ""+flag;
+        boolean res = suggestMessageService.insert(suggestMessage);
+
+        if(!res){
+            return new ResultTemplate("意见反馈失败",ResultTemplate.SQL_ERROR);
+        }
+
+        return new ResultTemplate("意见反馈成功",ResultTemplate.SUCCESS);
     }
 }

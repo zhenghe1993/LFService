@@ -34,9 +34,15 @@ public class UserServiceImpl extends SuperServiceImpl<UserMapper, User> implemen
     }
 
     @Override
-    public boolean isExist(String phoneNumber) {
-        return baseMapper.isExist(phoneNumber)!=null;
+    public boolean isExistPhone(String phoneNumber) {
+        return baseMapper.isExistPhone(phoneNumber)!=null;
     }
+
+    @Override
+    public boolean isExistName(String name) {
+        return baseMapper.isExistName(name)!= null;
+    }
+
 
 
     @Override

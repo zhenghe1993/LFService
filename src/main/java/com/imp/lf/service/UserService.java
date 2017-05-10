@@ -21,5 +21,6 @@ public interface UserService extends ISuperService<User>{
     //返回token
     String findTokenById(Long id);
 
-    boolean isExist(String phoneNumber);
+    boolean isExistPhone(String phoneNumber);
+    boolean isExistName(String name);
 }

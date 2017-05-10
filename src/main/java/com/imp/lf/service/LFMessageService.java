@@ -21,7 +21,7 @@ public interface LFMessageService extends ISuperService<LFMessage> {
 
     public List<LFMessage> findLFMessageList(Long id, String type, String kind, String location, int currentPage);
 
-    public Long insertLFMessage(LFMessage lfMessage);
+    public void insertLFMessage(LFMessage lfMessage);
 
     public void deleteLFMessageById(Long id);
 

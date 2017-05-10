@@ -19,10 +19,12 @@
 	<select id="findTokenById" parameterType="java.lang.Long" resultType="java.lang.String">
 		SELECT u.token FROM t_user u WHERE u.id=#{id}
 	</select>
-	<select id="isExist" parameterType="java.lang.String" resultType="java.lang.Long">
+	<select id="isExistPhone" parameterType="java.lang.String" resultType="java.lang.Long">
 		SELECT u.id FROM t_user u where u.phone_number=#{phoneNumber}
 	</select>
-
+	<select id="isExistName" parameterType="java.lang.String" resultType="java.lang.Long">
+		SELECT u.id FROM t_user u where u.name=#{name}
+	</select>
 
 
 

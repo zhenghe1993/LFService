@@ -1,5 +1,6 @@
 package com.imp.lf.controller;
 
+import com.imp.lf.dto.ResultTemplate;
 import com.imp.lf.entities.Attention;
 import com.imp.lf.service.AttentionService;
 import com.imp.lf.service.UserService;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * <p>
  * 查找关注数量（根据data_id）
  */
+@RequestMapping(value = "/attention",produces = "application/json")
 @Controller
 public class AttentionController {
 
@@ -31,10 +33,10 @@ public class AttentionController {
 
     @ResponseBody
     @RequestMapping(value = "/addAttention", method = RequestMethod.POST)
-    public String addAttention(Long dataId, Long userId, String type) {
+    public Object addAttention(Long dataId, Long userId, String type) {
 
-        if (dataId == null || userId == null) {
-            return "Incomplete";
+        if (dataId == 0 || userId == 0) {
+            return new ResultTemplate("参数缺失",ResultTemplate.PARAMETER_LOST);
         }
         Attention attention = new Attention();
         attention.setUserId(userId);
@@ -42,22 +44,22 @@ public class AttentionController {
         attention.setType(type);
         attentionService.addAttention(attention);
 
-        return userService.updateTokenById(userId);
+        return new ResultTemplate(userService.updateTokenById(userId),ResultTemplate.SUCCESS);
     }
 
     @ResponseBody
     @RequestMapping(value = "/findAttention", method = RequestMethod.GET)
-    public String findAttention(Long dataId, Long userId, String type) {
+    public Object findAttention(Long dataId, Long userId, String type) {
 
-        if (dataId == null || userId == null || type == null) {
-            return "Incomplete";
+        if (dataId == 0 || userId == 0 || type .trim().isEmpty()) {
+            return new ResultTemplate("参数缺失",ResultTemplate.PARAMETER_LOST);
         }
         Attention attention = attentionService.findAttention(dataId, userId, type);
         if (attention == null) {
-            return "false";
+            return new ResultTemplate("无此关注",ResultTemplate.ATTENTION_ERROR);
         }
 
-        return "true";
+        return new ResultTemplate(attention,ResultTemplate.SUCCESS);
     }
 
 }

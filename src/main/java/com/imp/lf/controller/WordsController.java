@@ -1,6 +1,6 @@
 package com.imp.lf.controller;
 
-import com.alibaba.fastjson.JSON;
+import com.imp.lf.dto.ResultTemplate;
 import com.imp.lf.entities.Words;
 import com.imp.lf.service.UserService;
 import com.imp.lf.service.WordsService;
@@ -18,6 +18,7 @@ import java.util.List;
  * <p>
  * 评论或留言
  */
+@RequestMapping(produces = "application/json")
 @Controller
 public class WordsController {
 
@@ -30,50 +31,51 @@ public class WordsController {
     //添加
     @ResponseBody
     @RequestMapping(value = "/words/addWords", method = RequestMethod.POST)
-    public String addWords(Words words,
+    public Object addWords(Words words,
                            String token) {
         if (words == null || token == null) {
-            return "Incomplete";
+            return new ResultTemplate("参数缺失",ResultTemplate.PARAMETER_LOST);
         }
 
         wordsService.insertWords(words);
 
-        return userService.updateTokenById(words.getFromUserId());
+        return new ResultTemplate(userService.updateTokenById(words.getFromUserId()),ResultTemplate.SUCCESS);
     }
 
 
     //删除
     @ResponseBody
     @RequestMapping(value = "/words/deleteWords", method = RequestMethod.POST)
-    public String deleteWords(Long id,
+    public Object deleteWords(Long id,
                               String token) {
         if (id == null || token == null) {
-            return "Incomplete";
+            return new ResultTemplate("参数缺失",ResultTemplate.PARAMETER_LOST);
         }
         Words words = wordsService.selectById(id);
         if (words == null) {
-            return "error";
+            return new ResultTemplate("无此评论",ResultTemplate.WORDS_ERROR);
         }
         wordsService.deleteWordsById(id);
 
-        return userService.updateTokenById(words.getFromUserId());
+
+        return new ResultTemplate(userService.updateTokenById(words.getFromUserId()),ResultTemplate.SUCCESS);
     }
 
     //查找
 
     @ResponseBody
     @RequestMapping(value = "/words/findWords", method = RequestMethod.POST)
-    public String findWords(Long id,
+    public Object findWords(Long id,
                             String token) {
         if (id == null || token == null) {
-            return "Incomplete";
+            return new ResultTemplate("参数缺失",ResultTemplate.PARAMETER_LOST);
         }
         List<Words> words = wordsService.findWordsById(id);
         if (words == null) {
-            return "error";
+            return new ResultTemplate("无此评论",ResultTemplate.WORDS_ERROR);
         }
 
-        return JSON.toJSONString(words);
+        return new ResultTemplate(words,ResultTemplate.SUCCESS);
     }
 
 

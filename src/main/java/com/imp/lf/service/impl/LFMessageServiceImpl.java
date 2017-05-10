@@ -36,8 +36,8 @@ public class LFMessageServiceImpl extends SuperServiceImpl<LFMessageMapper, LFMe
 
 
     @Override
-    public Long insertLFMessage(LFMessage lfMessage) {
-        return baseMapper.insertMessage(lfMessage);
+    public void insertLFMessage(LFMessage lfMessage) {
+         baseMapper.insertMessage(lfMessage);
     }
 
     @Override

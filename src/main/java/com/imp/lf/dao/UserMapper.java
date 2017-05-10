@@ -17,5 +17,7 @@ public interface UserMapper extends AutoMapper<User> {
 
     String findTokenById(Long id);
 
-    Long isExist(String phoneNumber);
+    Long isExistPhone(String phoneNumber);
+
+    Long isExistName(String name);
 }
